@@ -1,5 +1,10 @@
-# Vue Weather Widget
+# Fork notice:
+This is the UCD Team 10 Summer Practicum fork of vue-weather-widget from (https://github.com/dipu-bd/vue-weather-widget)[dipu-bd] made by dipu-bd. In accordance with the repository's Apache-2.0 license, this fork is carried out to modify and make use of the software in said repository under the knowledge that modification and distribution (amongst other rights) are permitted under said license.
 
+## Modifications
+This fork seeks to modify the original repository code so that it no longer directly queries the OpenWeatherMap API; instead, queries will be sent to a local backend server (in this case, a Flask server), and Flask will query and cache responses from OpenWeatherMap directly. This is to enable weather widget functionality for larger userbases, where the free tier OpenWeatherMap API quota could quickly be reached.
+
+# Vue Weather Widget
 [![vue 2x](https://img.shields.io/badge/vuejs-2.x-brightgreen.svg)](https://vuejs.org/)
 [![npm](https://img.shields.io/npm/v/vue-weather-widget)](http://npmjs.com/package/vue-weather-widget)
 [![npm download per month](https://img.shields.io/npm/dm/vue-weather-widget)](http://npmjs.com/package/vue-weather-widget)
@@ -17,7 +22,6 @@ Weather widget inspired by [forecast embeds](https://blog.darksky.net/forecast-e
 ## Install
 
 ### NPM
-
 ```
 npm i vue-weather-widget
 ```
