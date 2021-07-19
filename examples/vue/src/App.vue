@@ -1,59 +1,60 @@
 <template>
-  <section class="container">
-    <h1>From Open Weather Map</h1>
-    <vue-weather
-      api-key="45aee2ef715cfa91ed7957e8cfd37a70"
-      units="uk"
-      :latitude="lat"
-      :longitude="long"
-      language="en"
-    />
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-    <hr />
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
 
-    <h1>From Dark Sky Api</h1>
-    <vue-weather
-      api-key="e20753dfcaae902ab091fbb4925d432a"
-      units="uk"
-      :latitude="lat"
-      :longitude="long"
-      language="en"
-      use-dark-sky-api
-    />
-  </section>
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import VueWeather from "vue-weather-widget";
+import HelloWorld from './components/HelloWorld';
 
 export default {
-  name: "app",
+  name: 'App',
+
   components: {
-    VueWeather,
+    HelloWorld,
   },
+
   data: () => ({
-    lat: "24.886436",
-    long: "91.880722",
+    //
   }),
 };
 </script>
-
-<style>
-.container {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 95vh;
-}
-
-h1 {
-  color: teal;
-  border-bottom: 1px solid #dddddd;
-  padding: 10px 0;
-}
-</style>

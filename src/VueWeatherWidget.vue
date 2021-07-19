@@ -1,11 +1,7 @@
 <template>
   <div class="vww__widget" :style="{ color: textColor }">
     <slot name="header">
-      <div
-        class="vww__header"
-        :style="{ borderColor: barColor }"
-        v-if="!hideHeader"
-      >
+      <div class="vww__header" :style="{ borderColor: barColor }" v-if="!hideHeader">
         <slot name="title">
           <span class="vww__title">
             {{ `Weather for Dublin` }}
@@ -17,25 +13,14 @@
     <div class="vww__content">
       <div class="vww__loading" v-if="loading">
         <slot name="loading">
-          <skycon
-            condition="partly-cloudy-day"
-            :color="textColor"
-            :paused="disableAnimation"
-          />
+          <skycon condition="partly-cloudy-day" :color="textColor" :paused="disableAnimation" />
           <span class="vww__title">Loading...</span>
         </slot>
       </div>
 
-      <div
-        class="vww__error"
-        v-else-if="error || !weather || !currently || !daily"
-      >
+      <div class="vww__error" v-else-if="error || !weather || !currently || !daily">
         <slot name="error">
-          <skycon
-            condition="rain"
-            :color="textColor"
-            :paused="disableAnimation"
-          />
+          <skycon condition="rain" :color="textColor" :paused="disableAnimation" />
           <span class="vww__title">{{ error || "Something went wrong!" }}</span>
         </slot>
       </div>
@@ -106,8 +91,32 @@
             </div>
           </div>
         </div>
+        <div class="vww_hourly">
+          <!--
+            <v-card
+            v-text="hourlyArray"
+          >
+          </v-card
+          -->
+        </div>
+
+        
       </template>
     </div>
+
+    <div>
+        <v-sparkline
+          line-width="2"
+          padding="8"
+          smooth="15"
+          :value="hourlyArray.temp"
+          :labels="hourlyArray.time"
+          label-size="3"
+          auto-draw
+        >
+        </v-sparkline>
+    </div>
+
   </div>
 </template>
 

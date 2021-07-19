@@ -137,6 +137,26 @@ export default {
   },
 
   computed: {
+    hourlyArray(){
+      /*
+      let returnedArray = []
+      for(let hour of this.weather.hourlyArray){
+        let timeVar = new Date(hour.dt * 1000)
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
+        returnedArray.push([hour.temp, timeVar.toLocaleTimeString('en-GB',{ hour: '2-digit', minute: '2-digit' })])
+      }
+      
+      return returnedArray
+      */
+
+     let returnedDict = {"time":[],"temp":[]}
+     for(let hour of this.weather.hourlyArray){
+        let timeVar = new Date(hour.dt * 1000)
+        returnedDict.time.push(timeVar.toLocaleTimeString('en-GB',{ hour: '2-digit', minute: '2-digit' }))
+        returnedDict.temp.push(hour.temp)
+     }
+     return returnedDict
+    },
     currently() {
       return this.weather.currently;
     },
@@ -209,7 +229,7 @@ export default {
     */
 
     loadWeather() {
-      console.log(this.serverURL)
+      //console.log(this.serverURL)
       //const fetchWeatherMethod = this.useDarkSkyApi ? Utils.fetchWeather : Utils.fetchOWMWeather;
       return Utils.fetchServerWeather({
         serverURL: this.serverURL, //use default serverURL value, or specify here/with paramater if necessary

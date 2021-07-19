@@ -156,14 +156,15 @@ const utils = {
       .then(utils.mapData);
   },
 
-
   mapData(data) {
+    console.log(data)
     const { current } = data;
     const { weather } = current;
     const [currentWeather] = weather;
     const { description, icon } = currentWeather;
     const iconName = utils.mapIcon(icon);
 
+    //console.log(current)
     return {
       currently: Object.assign({}, current, {
         icon: iconName,
@@ -189,6 +190,7 @@ const utils = {
           };
         }),
       },
+      hourlyArray: data.hourly,
     };
   },
 
