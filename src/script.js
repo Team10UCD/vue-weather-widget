@@ -18,12 +18,26 @@ export default {
     // Your Dark Sky / OpenWeatherMap secret key
     apiKey: {
       type: String,
-      required: true,
+      //required: true,
     },
 
     // Address to lookup location.
     address: {
       type: String,
+    },
+
+    // (Local) server URL to query for data
+    /* by default, it will query the local window hostname
+    under the assumption that you are hosting your frontend
+    and backend from the same URL; using the window name 
+    facilitates easier development, but may pose a minor security risk.
+    you can hardcode a URL if needed/desired below:
+    */
+    serverURL: {
+      type: String,
+      required: true,
+      //default: ("https://" + window.location.hostname + "/weather")
+      default: ("https://localhost/weather")
     },
 
     // The latitude of a location (in decimal degrees).
@@ -179,6 +193,7 @@ export default {
   },
 
   methods: {
+    /*
     loadWeather() {
       const fetchWeatherMethod = this.useDarkSkyApi ? Utils.fetchWeather : Utils.fetchOWMWeather;
       return fetchWeatherMethod({
@@ -191,11 +206,22 @@ export default {
         this.$set(this, "weather", data);
       });
     },
+    */
+
+    loadWeather() {
+      console.log(this.serverURL)
+      //const fetchWeatherMethod = this.useDarkSkyApi ? Utils.fetchWeather : Utils.fetchOWMWeather;
+      return Utils.fetchServerWeather({
+        serverURL: this.serverURL, //use default serverURL value, or specify here/with paramater if necessary
+      }).then((data) => {
+        this.$set(this, "weather", data);
+      });
+    },
 
     autoupdate() {
       clearTimeout(this.timeout);
       const time = Number(this.updateInterval);
-      if (!time || time < 10 || this.destroyed) {
+      if (!time || time < 60 || this.destroyed) {
         return;
       }
       this.timeout = setTimeout(() => this.hydrate(false), time);
@@ -204,7 +230,7 @@ export default {
     hydrate(setLoading = true) {
       this.$set(this, "loading", setLoading);
       return this.$nextTick()
-        .then(this.processLocation)
+        //.then(this.processLocation)
         .then(this.loadWeather)
         .then(() => {
           this.$set(this, "error", null);

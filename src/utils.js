@@ -144,6 +144,19 @@ const utils = {
       .then(utils.mapData);
   },
 
+
+  fetchServerWeather(opts = {}) {
+    if (!opts.serverURL) {
+      throw new Error("Server URL to query is required, but not defined");
+    }
+    return fetch(
+      `${opts.serverURL}`
+    )
+      .then((resp) => resp.json())
+      .then(utils.mapData);
+  },
+
+
   mapData(data) {
     const { current } = data;
     const { weather } = current;

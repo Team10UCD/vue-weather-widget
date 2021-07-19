@@ -1,8 +1,8 @@
 {
-  "name": "vue-weather-widget",
-  "version": "4.2.4",
-  "description": "Weather forecast widget for Vuejs using DarkSky api",
-  "exportName": "vue-weather-widget",
+  "name": "vue-weather-widget-team-ten-fork",
+  "version": "0.0.1",
+  "description": "Weather forecast widget for Vuejs using local server that queries and caches OpenWeatherMap",
+  "exportName": "vue-weather-widget-team-ten-fork",
   "main": "src/index.js",
   "module": "examples/static/dist/js/vue-weather-widget.esm.js",
   "unpkg": "examples/static/dist/js/vue-weather-widget.min.js",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dipu-bd/vue-weather-widget.git"
+    "url": "git+https://github.com/Team10UCD/vue-weather-widget.git"
   },
   "keywords": [
     "weather",
@@ -41,12 +41,12 @@
     "vue-plugin",
     "vue-component"
   ],
-  "author": "Sudipto Chandra <dipu.sudipta@gmail.com>",
+  "author": "Daniel Danev <danevd@tcd.ie>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/dipu-bd/vue-weather-widget/issues"
   },
-  "homepage": "https://github.com/dipu-bd/vue-weather-widget#readme",
+  "homepage": "https://github.com/Team10UCD/vue-weather-widget#readme",
   "dependencies": {
     "jsonp": "^0.2.1",
     "vue-skycons": "^4.0.3"

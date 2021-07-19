@@ -799,6 +799,21 @@ var utils = {
       .then(utils.mapData);
   },
 
+
+  fetchServerWeather: function fetchServerWeather(opts) {
+    if ( opts === void 0 ) opts = {};
+
+    if (!opts.serverURL) {
+      throw new Error("Server URL to query is required, but not defined");
+    }
+    return fetch(
+      ("" + (opts.serverURL))
+    )
+      .then(function (resp) { return resp.json(); })
+      .then(utils.mapData);
+  },
+
+
   mapData: function mapData(data) {
     var current = data.current;
     var weather = current.weather;
@@ -1792,7 +1807,7 @@ staticRenderFns: [],
 };
 
 var VueWeatherWidget = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vww__widget",style:({ color: _vm.textColor })},[_vm._t("header",[(!_vm.hideHeader)?_c('div',{staticClass:"vww__header",style:({ borderColor: _vm.barColor })},[_vm._t("title",[_c('span',{staticClass:"vww__title"},[_vm._v("\n          "+_vm._s(("Weather for " + (_vm.location.name)))+"\n        ")])])],2):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"vww__content"},[(_vm.loading)?_c('div',{staticClass:"vww__loading"},[_vm._t("loading",[_c('skycon',{attrs:{"condition":"partly-cloudy-day","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('span',{staticClass:"vww__title"},[_vm._v("Loading...")])])],2):(_vm.error || !_vm.weather || !_vm.currently || !_vm.daily)?_c('div',{staticClass:"vww__error"},[_vm._t("error",[_c('skycon',{attrs:{"condition":"rain","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('span',{staticClass:"vww__title"},[_vm._v(_vm._s(_vm.error || "Something went wrong!"))])])],2):[_c('div',{staticClass:"vww__currently"},[_c('div',[_c('skycon',{attrs:{"condition":_vm.currently.icon,"size":"80","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('div',{staticClass:"vww__temp"},[_vm._v("\n            "+_vm._s(Math.round(_vm.currently.temperature))+"°\n            "),(_vm.isDownward)?_c('div',[_c('svg',{attrs:{"viewBox":"0 0 306 306","width":"24","height":"24"}},[_c('polygon',{style:({ fill: _vm.textColor }),attrs:{"points":"270.3,58.65 153,175.95 35.7,58.65 0,94.35 153,247.35 306,94.35"}})])]):_c('div',[_c('svg',{attrs:{"viewBox":"0 0 306 306","width":"24","height":"24"}},[_c('polygon',{style:({ fill: _vm.textColor }),attrs:{"points":"35.7,247.35 153,130.05 270.3,247.35 306,211.65 153,58.65 0,211.65"}})])])])],1),_vm._v(" "),_c('div',{staticClass:"vww__title"},[_vm._v(_vm._s(_vm.currently.summary))]),_vm._v(" "),_c('div',{staticClass:"vww__wind"},[_vm._v("\n          Wind: "+_vm._s(Math.round(_vm.currently.windSpeed))+" mph ("+_vm._s(_vm.windBearing)+")\n        ")])]),_vm._v(" "),_c('div',{staticClass:"vww__daily"},_vm._l((_vm.daily),function(day){return _c('div',{key:day.time,staticClass:"vww__day"},[_c('span',[_vm._v(_vm._s(day.weekName))]),_vm._v(" "),_c('span',[_c('skycon',{staticStyle:{"display":"block"},attrs:{"condition":day.icon,"size":"26","color":_vm.textColor,"paused":_vm.disableAnimation}})],1),_vm._v(" "),_c('div',{staticClass:"vww__day-bar"},[_c('div',{style:({ height: ((day.top) + "%") })},[_c('span',[_vm._v(_vm._s(Math.round(day.temperatureMax))+"°")])]),_vm._v(" "),_c('div',{style:({
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vww__widget",style:({ color: _vm.textColor })},[_vm._t("header",[(!_vm.hideHeader)?_c('div',{staticClass:"vww__header",style:({ borderColor: _vm.barColor })},[_vm._t("title",[_c('span',{staticClass:"vww__title"},[_vm._v("\n          "+_vm._s("Weather for Dublin")+"\n        ")])])],2):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"vww__content"},[(_vm.loading)?_c('div',{staticClass:"vww__loading"},[_vm._t("loading",[_c('skycon',{attrs:{"condition":"partly-cloudy-day","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('span',{staticClass:"vww__title"},[_vm._v("Loading...")])])],2):(_vm.error || !_vm.weather || !_vm.currently || !_vm.daily)?_c('div',{staticClass:"vww__error"},[_vm._t("error",[_c('skycon',{attrs:{"condition":"rain","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('span',{staticClass:"vww__title"},[_vm._v(_vm._s(_vm.error || "Something went wrong!"))])])],2):[_c('div',{staticClass:"vww__currently"},[_c('div',[_c('skycon',{attrs:{"condition":_vm.currently.icon,"size":"80","color":_vm.textColor,"paused":_vm.disableAnimation}}),_vm._v(" "),_c('div',{staticClass:"vww__temp"},[_vm._v("\n            "+_vm._s(Math.round(_vm.currently.temperature))+"°\n            "),(_vm.isDownward)?_c('div',[_c('svg',{attrs:{"viewBox":"0 0 306 306","width":"24","height":"24"}},[_c('polygon',{style:({ fill: _vm.textColor }),attrs:{"points":"270.3,58.65 153,175.95 35.7,58.65 0,94.35 153,247.35 306,94.35"}})])]):_c('div',[_c('svg',{attrs:{"viewBox":"0 0 306 306","width":"24","height":"24"}},[_c('polygon',{style:({ fill: _vm.textColor }),attrs:{"points":"35.7,247.35 153,130.05 270.3,247.35 306,211.65 153,58.65 0,211.65"}})])])])],1),_vm._v(" "),_c('div',{staticClass:"vww__title"},[_vm._v(_vm._s(_vm.currently.summary))]),_vm._v(" "),_c('div',{staticClass:"vww__wind"},[_vm._v("\n          Wind: "+_vm._s(Math.round(_vm.currently.windSpeed))+" mph ("+_vm._s(_vm.windBearing)+")\n        ")])]),_vm._v(" "),_c('div',{staticClass:"vww__daily"},_vm._l((_vm.daily),function(day){return _c('div',{key:day.time,staticClass:"vww__day"},[_c('span',[_vm._v(_vm._s(day.weekName))]),_vm._v(" "),_c('span',[_c('skycon',{staticStyle:{"display":"block"},attrs:{"condition":day.icon,"size":"26","color":_vm.textColor,"paused":_vm.disableAnimation}})],1),_vm._v(" "),_c('div',{staticClass:"vww__day-bar"},[_c('div',{style:({ height: ((day.top) + "%") })},[_c('span',[_vm._v(_vm._s(Math.round(day.temperatureMax))+"°")])]),_vm._v(" "),_c('div',{style:({
                 borderRadius: '10px',
                 background: _vm.barColor,
                 height: ((day.height) + "%"),
@@ -1814,12 +1829,26 @@ staticRenderFns: [],
     // Your Dark Sky / OpenWeatherMap secret key
     apiKey: {
       type: String,
-      required: true,
+      //required: true,
     },
 
     // Address to lookup location.
     address: {
       type: String,
+    },
+
+    // (Local) server URL to query for data
+    /* by default, it will query the local window hostname
+    under the assumption that you are hosting your frontend
+    and backend from the same URL; using the window name 
+    facilitates easier development, but may pose a minor security risk.
+    you can hardcode a URL if needed/desired below:
+    */
+    serverURL: {
+      type: String,
+      required: true,
+      //default: ("https://" + window.location.hostname + "/weather")
+      default: ("https://localhost/weather")
     },
 
     // The latitude of a location (in decimal degrees).
@@ -1975,16 +2004,28 @@ staticRenderFns: [],
   },
 
   methods: {
-    loadWeather: function loadWeather() {
-      var this$1 = this;
-
-      var fetchWeatherMethod = this.useDarkSkyApi ? utils.fetchWeather : utils.fetchOWMWeather;
+    /*
+    loadWeather() {
+      const fetchWeatherMethod = this.useDarkSkyApi ? Utils.fetchWeather : Utils.fetchOWMWeather;
       return fetchWeatherMethod({
         apiKey: this.apiKey,
         lat: this.location.lat,
         lng: this.location.lng,
         units: this.units,
         language: this.language,
+      }).then((data) => {
+        this.$set(this, "weather", data);
+      });
+    },
+    */
+
+    loadWeather: function loadWeather() {
+      var this$1 = this;
+
+      console.log(this.serverURL);
+      //const fetchWeatherMethod = this.useDarkSkyApi ? Utils.fetchWeather : Utils.fetchOWMWeather;
+      return utils.fetchServerWeather({
+        serverURL: this.serverURL, //use default serverURL value, or specify here/with paramater if necessary
       }).then(function (data) {
         this$1.$set(this$1, "weather", data);
       });
@@ -1995,7 +2036,7 @@ staticRenderFns: [],
 
       clearTimeout(this.timeout);
       var time = Number(this.updateInterval);
-      if (!time || time < 10 || this.destroyed) {
+      if (!time || time < 60 || this.destroyed) {
         return;
       }
       this.timeout = setTimeout(function () { return this$1.hydrate(false); }, time);
@@ -2007,7 +2048,7 @@ staticRenderFns: [],
 
       this.$set(this, "loading", setLoading);
       return this.$nextTick()
-        .then(this.processLocation)
+        //.then(this.processLocation)
         .then(this.loadWeather)
         .then(function () {
           this$1.$set(this$1, "error", null);
