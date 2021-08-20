@@ -1,3 +1,6 @@
+# Note:
+This repository is considered defunct as the core weather widget aspects were pulled out into a single-file Vue component for ease-of-use and further development.
+
 # Fork notice:
 This is the UCD Team 10 Summer Practicum fork of vue-weather-widget from (https://github.com/dipu-bd/vue-weather-widget)[dipu-bd] made by dipu-bd. In accordance with the repository's Apache-2.0 license, this fork is carried out to modify and make use of the software in said repository under the knowledge that modification and distribution (amongst other rights) are permitted under said license.
 
